@@ -5,12 +5,14 @@ import 'leaflet/dist/leaflet.css';
 import { FiPlus } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { Map, TileLayer } from 'react-leaflet'
+import logo from '../assets/Logo.png'
 
 function List() {
   return (
     <div id="page-map">
       <aside>
         <header>
+          <img src={logo}></img>
           <h2>Escolha um no mapa</h2>
           <p>Muitos animais estao a procura de um lar</p>
         </header>

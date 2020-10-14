@@ -21,7 +21,13 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: space-between;
+
+    background: url('../../assets/Main2.png') no-repeat 75% center
 }
+
+#page-landing .content-wrapper img.logo {
+    max-width: 200px;
+  }
 
 #page-landing .content-wrapper main {
     max-width: 350px;

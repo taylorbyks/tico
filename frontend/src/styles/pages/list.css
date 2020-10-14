@@ -6,6 +6,10 @@
     display: flex;
   }
   
+  #page-map  img {
+    max-width: 170px;
+  }
+
   #page-map aside {
     width: 440px;
     background: linear-gradient(0deg,#acd879 0%, #2c9fe7 100%);
