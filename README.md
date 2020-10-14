@@ -1,4 +1,4 @@
-# tico
+# Tico
 Projeto feito em homenagem ao Tico, um cão adotado que faleceu em 2020.
 A ideia do projeto é fazer com que cada vez mais animais de rua consigam um lar e um dono. 
 
