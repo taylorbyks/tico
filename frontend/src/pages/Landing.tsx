@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/global.css'
 import '../styles/pages/landing.css'
 import { FiArrowRight } from 'react-icons/fi'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 function Landing() {
   return (
@@ -22,7 +22,7 @@ function Landing() {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default Landing;
+export default Landing

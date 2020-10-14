@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import './styles/global.css'
 import './styles/pages/landing.css'
 import { FiArrowRight } from 'react-icons/fi'
-import Routes from './routes';
+import Routes from './routes'
 
 function App() {
   return (
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
