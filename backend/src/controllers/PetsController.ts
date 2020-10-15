@@ -52,8 +52,8 @@ export default {
 			latitude,
 			longitude,
 			about,
-			big,
-			puppy,
+			big: big === 'true',
+			puppy: puppy === 'true',
 			userName,
 			userNumber,
 			images
@@ -66,7 +66,7 @@ export default {
 			about: Yup.string().required().max(300),
 			big: Yup.boolean().required(),
 			puppy: Yup.boolean().required(),
-			useName: Yup.string().required(),
+			userName: Yup.string().required(),
 			userNumber: Yup.string().required().max(11).min(10),
 			images: Yup.array(
 				Yup.object().shape({
@@ -77,6 +77,7 @@ export default {
 
 		await schema.validate(data, {
 			 abortEarly: false,
+
 		})
 
 		const pet = petsRepository.create(data)
