@@ -23,6 +23,12 @@ form.create-pet-form fieldset {
   border: 0;
 }
 
+form.create-pet-form .leaflet-container {
+  margin-bottom: 40px;
+  border-radius: 20px;
+  border: 1px solid #D3E2E5;
+}
+
 form.create-pet-form fieldset + fieldset {
   margin-top: 80px;
 }

@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiArrowRight, FiPlus } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import Logo from '../assets/Logo.png'
 import mapIcon from '../utils/mapIcon'
+import api from '../services/api';
 
 import '../styles/pages/list.css'
 
+interface Pet {
+  id: number
+  latitude: number
+  longitude: number
+  name: string
+}
+
 function List() {
+  const [pets, setPets] = useState<Pet[]>([])
+  
+  useEffect(() => {
+    api.get('pets').then( response => {
+      setPets(response.data)
+    })
+  }, [ ])
+
   return (
     <div id="page-map">
       <aside>
@@ -32,22 +48,27 @@ function List() {
           url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`} 
         />
 
-        <Marker
-          icon={mapIcon}
-          position={[-24.9565605,-53.4840018]}
-        >
+        {pets.map(pet => {
+          return (
+            <Marker
+              key={pet.id}
+              icon={mapIcon}
+              position={[pet.latitude,pet.longitude]}
+            >
           <Popup 
             closeButton={false}
             minWidth={240}
             maxWidth={240}
             className="map-popup"
           > 
-            Cachorro
-            <Link to="/pets/1">
+            {pet.name}
+            <Link to={`/pets/${pet.id}`}>
               <FiArrowRight size={20} color="#fff" />
             </Link>
           </Popup>
         </Marker>
+          )
+        })}
         
       </Map>
 

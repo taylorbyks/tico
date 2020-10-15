@@ -4,21 +4,23 @@ import Image from './Image'
 @Entity("pets")
 export default class Pet {
   @PrimaryGeneratedColumn("increment")
-  id: number;
+  id: number
   @Column()
-  name: string;
+  name: string
   @Column()
-  latitude: string;
+  latitude: string
   @Column()
-  longitude: string;
+  longitude: string
   @Column()
-  about: string;
+  about: string
   @Column()
-  species: string;
+  big: boolean
   @Column()
-  big: boolean;
+  puppy: boolean
   @Column()
-  puppy: boolean;
+  userName: string
+  @Column()
+  userNumber: string
   @OneToMany(() => Image, image => image.pet, {
     cascade: ['insert', 'update']
   })

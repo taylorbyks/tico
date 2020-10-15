@@ -34,9 +34,10 @@ export default {
 			latitude,
 			longitude,
 			about,
-			species,
 			big,
 			puppy,
+			userName,
+			userNumber,
 		} = request.body
 
 		const petsRepository = getRepository(Pet)
@@ -51,9 +52,10 @@ export default {
 			latitude,
 			longitude,
 			about,
-			species,
 			big,
 			puppy,
+			userName,
+			userNumber,
 			images
 		}
 
@@ -62,9 +64,10 @@ export default {
 			latitude: Yup.number().required(),
 			longitude: Yup.number().required(),
 			about: Yup.string().required().max(300),
-			species: Yup.string().required().max(20),
 			big: Yup.boolean().required(),
 			puppy: Yup.boolean().required(),
+			useName: Yup.string().required(),
+			userNumber: Yup.string().required().max(11).min(10),
 			images: Yup.array(
 				Yup.object().shape({
 					path: Yup.string().required()

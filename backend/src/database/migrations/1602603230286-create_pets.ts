@@ -35,10 +35,6 @@ export class createPets1602603230286 implements MigrationInterface {
 					type: 'text',
 				},
 				{
-					name: 'species',
-					type: 'varchar',
-				},
-				{
 					name: 'big',
 					type: 'boolean',
 					default: false,
@@ -47,6 +43,14 @@ export class createPets1602603230286 implements MigrationInterface {
 					name: 'puppy',
 					type: 'boolean',
 					default: false,
+				},
+				{
+					name: 'userName',
+					type: 'varchar',
+				},
+				{
+					name: 'userNumber',
+					type: 'integer',
 				},
 			],
 		}))

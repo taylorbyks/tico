@@ -9,9 +9,10 @@ export default {
       latitude: pet.latitude,
       longitude: pet.longitude,
       about: pet.about,
-			species: pet.species,
 			big: pet.big,
 			puppy: pet.puppy,
+      userName: pet.userName,
+      userNumber: pet.userNumber,
       images: imagesView.renderMany(pet.images)
     }
   },
