@@ -40,7 +40,7 @@ function List() {
       </aside>
 
         <Map 
-          center={[-24.9565605,-53.4840018]}
+          center={[-24.95, -53.4547]}
           zoom={13}
           style={{ width: '100%', height: '100%' }}
         >

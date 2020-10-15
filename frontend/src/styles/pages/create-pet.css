@@ -87,13 +87,34 @@ form.create-pet-form .input-block textarea {
   line-height: 28px;
 }
 
-form.create-pet-form .input-block .new-image {
+form.create-pet-form .input-block .images-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+form.create-pet-form .input-block .images-container img {
+ width: 100%;
+ height: 96px;
+ object-fit: cover;
+ border-radius: 20px;
+}
+
+form.create-pet-form .input-block .images-container .new-image {
   width: 100%;
-  height: 64px;
+  height: 96px;
   background: #F5F8FA;
   border: 1px dashed #2c9fe7;
   border-radius: 20px;
   cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form.create-pet-form .input-block input[type=file]{
+  display: none;
 }
 
 form.create-pet-form .input-block .button-select {
