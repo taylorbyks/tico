@@ -1,20 +1,20 @@
 import React from 'react';
-import '../styles/global.css'
-import '../styles/pages/list.css'
-import 'leaflet/dist/leaflet.css';
-import { FiPlus } from 'react-icons/fi'
+import { FiArrowRight, FiPlus } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { Map, TileLayer } from 'react-leaflet'
-import logo from '../assets/Logo.png'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import Logo from '../assets/Logo.png'
+import mapIcon from '../utils/mapIcon'
+
+import '../styles/pages/list.css'
 
 function List() {
   return (
     <div id="page-map">
       <aside>
         <header>
-          <img src={logo}></img>
+          <img src={Logo}></img>
           <h2>Escolha um no mapa</h2>
-          <p>Muitos animais estao a procura de um lar</p>
+          <p>Muitos animais estão a procura de um lar</p>
         </header>
 
         <footer>
@@ -31,9 +31,27 @@ function List() {
           <TileLayer 
           url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`} 
         />
+
+        <Marker
+          icon={mapIcon}
+          position={[-24.9565605,-53.4840018]}
+        >
+          <Popup 
+            closeButton={false}
+            minWidth={240}
+            maxWidth={240}
+            className="map-popup"
+          > 
+            Cachorro
+            <Link to="/pets/1">
+              <FiArrowRight size={20} color="#fff" />
+            </Link>
+          </Popup>
+        </Marker>
+        
       </Map>
 
-        <Link to="" className="create">
+        <Link to="/pets/create" className="create">
           <FiPlus size={32} color="#fff" />
         </Link>
     </div>
