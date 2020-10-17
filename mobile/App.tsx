@@ -3,10 +3,22 @@ import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
+import { useFonts } from 'expo-font'
+import { Rubik_400Regular, Rubik_500Medium, Rubik_700Bold } from '@expo-google-fonts/rubik'
 
 import mapMarker from './src/images/Marker.png'
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Rubik_400Regular,
+    Rubik_500Medium, 
+    Rubik_700Bold,
+  })
+  
+  if(!fontsLoaded) {
+    return null
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
@@ -80,6 +92,7 @@ const styles = StyleSheet.create({
   },
 
   footerText: {
+    fontFamily: 'Rubik_500Medium',
     color: '#633e3e',
   },
 
@@ -105,6 +118,7 @@ const styles = StyleSheet.create({
   },
 
   calloutText: {
+    fontFamily: 'Rubik_500Medium',
     color: '#633e3e',
     fontSize: 14,
   },
