@@ -52,8 +52,8 @@ export default {
 			latitude,
 			longitude,
 			about,
-			big,
-			puppy,
+			big: big === 'true',
+			puppy: puppy === 'true',
 			userName,
 			userNumber,
 			images
@@ -77,6 +77,7 @@ export default {
 
 		await schema.validate(data, {
 			 abortEarly: false,
+
 		})
 
 		const pet = petsRepository.create(data)
