@@ -6,7 +6,6 @@ import Logo from '../assets/Logo.png'
 import mapIcon from '../utils/mapIcon'
 import api from '../services/api';
 
-import 'leaflet/dist/leaflet.css'
 import '../styles/pages/list.css'
 
 interface Pet {
