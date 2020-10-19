@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useFonts } from 'expo-font'
-import { Rubik_400Regular, Rubik_500Medium, Rubik_700Bold } from '@expo-google-fonts/rubik'
+import { SourceSerifPro_400Regular, SourceSerifPro_600SemiBold, SourceSerifPro_700Bold } from '@expo-google-fonts/source-serif-pro'
 
 import Routes from './src/routes'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Rubik_400Regular,
-    Rubik_500Medium, 
-    Rubik_700Bold,
+    SourceSerifPro_400Regular, 
+    SourceSerifPro_600SemiBold, 
+    SourceSerifPro_700Bold,
   })
   
   if(!fontsLoaded) {

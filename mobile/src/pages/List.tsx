@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
 
   footerText: {
-    fontFamily: 'Rubik_500Medium',
+    fontFamily: 'SourceSerifPro_400Regular',
     color: '#633e3e',
   },
 
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
 
   calloutText: {
-    fontFamily: 'Rubik_500Medium',
+    fontFamily: 'SourceSerifPro_400Regular',
     color: '#633e3e',
     fontSize: 14,
   },

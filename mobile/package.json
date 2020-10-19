@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/rubik": "^0.1.0",
+    "@expo-google-fonts/source-serif-pro": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
