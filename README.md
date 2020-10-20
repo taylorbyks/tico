@@ -29,3 +29,16 @@ yarn start
 ```
 
 Abra http://localhost:3000 para vizualizar no browser.
+
+## Aplicação Mobile
+
+- NodeJS
+- ReactNative
+- Express.js
+- Expo
+
+Para rodar execute no diretório:
+
+```
+expo start
+```
