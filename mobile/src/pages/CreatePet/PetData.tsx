@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: '#8fa7b3',
+    color: '#5C8599',
     fontFamily: 'SourceSerifPro_600SemiBold',
     marginBottom: 8,
   },
 
   comment: {
     fontSize: 11,
-    color: '#8fa7b3',
+    color: '#5C8599',
   },
 
   input: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   imagesInput: {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderStyle: 'dashed',
-    borderColor: '#96D2F0',
+    borderColor: '#2c9fe7',
     borderWidth: 1.4,
     borderRadius: 20,
     height: 56,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
 
   nextButton: {
-    backgroundColor: '#15c3d6',
+    backgroundColor: '#3CDC8C',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',

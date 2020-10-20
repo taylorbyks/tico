@@ -1,10 +1,11 @@
 import React from 'react';
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
 import mapMarker from '../images/Marker.png'
 import { RectButton } from 'react-native-gesture-handler';
+import mapStyle from '../utils/mapStyle.json'
 
 export default function PetDetails() {
   return (
@@ -23,6 +24,8 @@ export default function PetDetails() {
         
           <View style={styles.mapContainer}>
             <MapView 
+              provider={PROVIDER_GOOGLE}
+              customMapStyle={mapStyle}
               initialRegion={{
                 latitude: -24.95, 
                 longitude: -53.4547,

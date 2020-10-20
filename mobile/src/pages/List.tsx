@@ -1,10 +1,12 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../images/Marker.png'
+import mapStyle from '../utils/mapStyle.json'
+import { RectButton } from 'react-native-gesture-handler';
 
 export default function List() {
   const navigation = useNavigation()
@@ -16,12 +18,13 @@ export default function List() {
   function handleNavigationtoCreatePet(){
     navigation.navigate('SelectMapPosition')
   }
-  
+
   return (
     <View style={styles.container}>
       <MapView 
         provider={PROVIDER_GOOGLE}
-        style={styles.map} 
+        style={styles.map}
+        customMapStyle={mapStyle}
         initialRegion={{
           latitude: -24.95, 
           longitude: -53.4547,
@@ -31,8 +34,8 @@ export default function List() {
       <Marker 
         icon={mapMarker}
         calloutAnchor={{
-          x: 1,
-          y: 0.8,
+          x: 2.5,
+          y: 0.9,
         }}
         coordinate={{
           latitude: -24.95, 
@@ -50,9 +53,9 @@ export default function List() {
       <View style={styles.footer}>
         <Text style={styles.footerText}>2 Animais encontrados</Text>
 
-        <TouchableOpacity style={styles.createPetButton} onPress={handleNavigationtoCreatePet}>
+        <RectButton style={styles.createPetButton} onPress={handleNavigationtoCreatePet}>
           <Feather name="plus" size={20} color="#fff"/>
-        </TouchableOpacity>
+        </RectButton>
       </View>
 
     </View>
@@ -89,8 +92,9 @@ const styles = StyleSheet.create({
   },
 
   footerText: {
-    fontFamily: 'SourceSerifPro_400Regular',
+    fontFamily: 'SourceSerifPro_600SemiBold',
     color: '#633e3e',
+    fontSize: 16,
   },
 
   createPetButton: {
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 46,
     paddingHorizontal: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: '#fff',
     borderRadius: 16,
     justifyContent: 'center',
   },
