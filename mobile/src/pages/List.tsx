@@ -12,6 +12,10 @@ export default function List() {
   function handleNavigationtoPetDetails(){
     navigation.navigate('PetDetails')
   }
+
+  function handleNavigationtoCreatePet(){
+    navigation.navigate('SelectMapPosition')
+  }
   
   return (
     <View style={styles.container}>
@@ -46,7 +50,7 @@ export default function List() {
       <View style={styles.footer}>
         <Text style={styles.footerText}>2 Animais encontrados</Text>
 
-        <TouchableOpacity style={styles.createPetButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.createPetButton} onPress={handleNavigationtoCreatePet}>
           <Feather name="plus" size={20} color="#fff"/>
         </TouchableOpacity>
       </View>
