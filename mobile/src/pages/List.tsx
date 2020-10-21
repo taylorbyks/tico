@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
@@ -7,12 +7,27 @@ import { useNavigation } from '@react-navigation/native';
 import mapMarker from '../images/Marker.png'
 import mapStyle from '../utils/mapStyle.json'
 import { RectButton } from 'react-native-gesture-handler';
+import api from '../services/api';
+
+interface Pet {
+  id: number
+  name: string
+  longitude: number
+  latitude: number
+}
 
 export default function List() {
+  const [pets, setPets] = useState<Pet[]>([])
   const navigation = useNavigation()
+
+  useEffect(() => {
+    api.get('list').then(response => {
+      setPets(response.data)
+    })
+  }, [])
   
-  function handleNavigationtoPetDetails(){
-    navigation.navigate('PetDetails')
+  function handleNavigationtoPetDetails(id: number){
+    navigation.navigate('PetDetails', { id })
   }
 
   function handleNavigationtoCreatePet(){
@@ -31,23 +46,28 @@ export default function List() {
           latitudeDelta: 0.09,
           longitudeDelta: 0.09,
       }}>
-      <Marker 
-        icon={mapMarker}
-        calloutAnchor={{
-          x: 2.5,
-          y: 0.9,
-        }}
-        coordinate={{
-          latitude: -24.95, 
-          longitude: -53.4547,
-        }}
-      >
-          <Callout tooltip onPress={handleNavigationtoPetDetails}>
-            <View style={styles.calloutContainer}>
-              <Text style={styles.calloutText}>Cachorro</Text>
-            </View>
-          </Callout>
-      </Marker>
+        {pets.map(pet => {
+          return (
+            <Marker 
+            key={pet.id}  
+            icon={mapMarker}
+              calloutAnchor={{
+                x: 2.5,
+                y: 0.9,
+              }}
+              coordinate={{
+                latitude: pet.latitude, 
+                longitude: pet.longitude,
+              }}
+            >
+                <Callout tooltip onPress={() => handleNavigationtoPetDetails(pet.id)}>
+                  <View style={styles.calloutContainer}>
+                    <Text style={styles.calloutText}>{pet.name}</Text>
+                  </View>
+                </Callout>
+            </Marker>
+          )
+        })}
       </MapView>
       
       <View style={styles.footer}>

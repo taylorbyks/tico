@@ -2,12 +2,15 @@ import React from 'react';
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
+import { useRoute } from '@react-navigation/native';
 
 import mapMarker from '../images/Marker.png'
 import { RectButton } from 'react-native-gesture-handler';
 import mapStyle from '../utils/mapStyle.json'
 
 export default function PetDetails() {
+  const route = useRoute()
+  
   return (
       <ScrollView style={styles.container}>
         <View style={styles.imagesContainer}>
