@@ -127,10 +127,8 @@ export default function Pet() {
               <a target="_blank" rel="noopener no referrer" href={`https://www.google.com/maps/dir/?api=1&destination=${pet.latitude},${pet.longitude}`}>Ver rotas no Google Maps</a>
             </footer>
           </div>
-              
-              
 
-            <button type="button" className="contact-button">
+            <button type="button" className="contact-button" onClick={() => `https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`}>
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
             </button>
