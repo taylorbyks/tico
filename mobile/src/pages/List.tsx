@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import mapMarker from '../images/Marker.png'
 import mapStyle from '../utils/mapStyle.json'
@@ -20,11 +20,11 @@ export default function List() {
   const [pets, setPets] = useState<Pet[]>([])
   const navigation = useNavigation()
 
-  useEffect(() => {
+  useFocusEffect(() => {
     api.get('pets').then(response => {
       setPets(response.data)
     })
-  }, [])
+  })
   
   function handleNavigationtoPetDetails(id: number){
     navigation.navigate('PetDetails', { id })

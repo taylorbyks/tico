@@ -5,7 +5,7 @@ import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 
 import mapMarker from '../images/Marker.png'
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 import mapStyle from '../utils/mapStyle.json'
 import api from '../services/api';
 
@@ -34,6 +34,14 @@ export default function PetDetails() {
   const [pet, setPet] = useState<Pet>()
 
   const params = route.params as PetDetailsRouteParams
+
+  function handleOpenGoogleMaps(){
+    Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${pet?.latitude},${pet?.longitude}`)
+  }
+
+  function handleOpenWhatsapp(){
+    Linking.openURL(`https://api.whatsapp.com/send?phone=${pet?.userNumber}&text=`)
+  }
 
   useEffect(() =>{
     api.get(`pets/${params.id}`).then(response => {
@@ -92,9 +100,9 @@ export default function PetDetails() {
               />
             </MapView>
   
-            <View style={styles.routesContainer}>
+            <TouchableOpacity onPress={handleOpenGoogleMaps} style={styles.routesContainer}>
               <Text style={styles.routesText}>Ver rotas no Google Maps</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         
           <View style={styles.separator} />
@@ -128,7 +136,7 @@ export default function PetDetails() {
             )}
           </View>
   
-          <RectButton style={styles.contactButton} onPress={() => { Linking.openURL(`https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`)}}>
+          <RectButton style={styles.contactButton} onPress={handleOpenWhatsapp}>
             <FontAwesome name="whatsapp" size={24} color="#FFF" />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>

@@ -19,7 +19,7 @@ export default function SelectMapPosition() {
   }
 
   function handleNextStep() {
-    navigation.navigate('PetData');
+    navigation.navigate('PetData', { position });
   }
 
   return (
