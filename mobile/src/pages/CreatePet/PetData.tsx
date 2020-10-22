@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import api from '../../services/api'
 
 export default function PetData() {
+  const [name, setName] = useState('')
+  const [about, setAbout] = useState('')
+  const [userName, setUserName] = useState('')
+  const [userNumber, setUserNumber] = useState('')
+  const [big, setBig] = useState(false)
+  const [puppy, setPuppy] = useState(false)
+  const [images, setImages] = useState<string[]>([])
+
+  const { navigate } = useNavigation()
+  
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
       <Text style={styles.title}>Dados</Text>

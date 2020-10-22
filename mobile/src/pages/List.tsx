@@ -21,7 +21,7 @@ export default function List() {
   const navigation = useNavigation()
 
   useEffect(() => {
-    api.get('list').then(response => {
+    api.get('pets').then(response => {
       setPets(response.data)
     })
   }, [])
@@ -125,8 +125,6 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: 'center',
-    
-
   },
 
   calloutContainer: {

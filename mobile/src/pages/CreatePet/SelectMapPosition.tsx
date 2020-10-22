@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { MapEvent, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import mapMarker from '../../images/Marker.png'
 import mapStyle from '../../utils/mapStyle.json'
+import api from "../../services/api"
 
 export default function SelectMapPosition() {
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0})
+  
   const navigation = useNavigation();
+
+  function handleSelectMapPosition(event: MapEvent) {
+    setPosition(event.nativeEvent.coordinate)
+  }
 
   function handleNextStep() {
     navigation.navigate('PetData');
@@ -18,6 +25,7 @@ export default function SelectMapPosition() {
   return (
     <View style={styles.container}>
       <MapView 
+        onPress={handleSelectMapPosition}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         initialRegion={{
@@ -28,15 +36,16 @@ export default function SelectMapPosition() {
         }}
         style={styles.mapStyle}
       >
-        <Marker 
-          icon={mapMarker}
-          coordinate={{ latitude: -24.95, longitude: -53.4547 }}
-        />
+         {position.latitude !== 0 && (
+          <Marker icon={mapMarker} coordinate={{ latitude: position.latitude, longitude: position.longitude }} />
+        )}
       </MapView>
 
-      <RectButton style={styles.nextButton} onPress={handleNextStep}>
-        <Text style={styles.nextButtonText}>Próximo</Text>
-      </RectButton>
+      {position.latitude !== 0 && (
+        <RectButton style={styles.nextButton} onPress={handleNextStep}>
+          <Text style={styles.nextButtonText}>Próximo</Text>
+        </RectButton>
+      )}
     </View>
   )
 }

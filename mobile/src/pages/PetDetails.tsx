@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, View, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
+import { Image, View, ScrollView, Text, StyleSheet, Dimensions, Linking } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
@@ -128,7 +128,7 @@ export default function PetDetails() {
             )}
           </View>
   
-          <RectButton style={styles.contactButton} onPress={() => {`https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`}}>
+          <RectButton style={styles.contactButton} onPress={() => { Linking.openURL(`https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`)}}>
             <FontAwesome name="whatsapp" size={24} color="#FFF" />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>
