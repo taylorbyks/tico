@@ -71,7 +71,7 @@ export default function List() {
       </MapView>
       
       <View style={styles.footer}>
-        <Text style={styles.footerText}>2 Animais encontrados</Text>
+      <Text style={styles.footerText}>{pets.length} Animais encontrados</Text>
 
         <RectButton style={styles.createPetButton} onPress={handleNavigationtoCreatePet}>
           <Feather name="plus" size={20} color="#fff"/>

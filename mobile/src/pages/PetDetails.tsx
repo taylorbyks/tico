@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
@@ -7,31 +7,73 @@ import { useRoute } from '@react-navigation/native';
 import mapMarker from '../images/Marker.png'
 import { RectButton } from 'react-native-gesture-handler';
 import mapStyle from '../utils/mapStyle.json'
+import api from '../services/api';
+
+interface PetDetailsRouteParams{
+  id: number
+}
+
+interface Pet {
+  id: number
+  latitude: number
+  longitude: number
+  name: string
+  about: string
+  userName: string
+  userNumber: string
+  big: boolean
+  puppy: boolean
+  images: Array<{
+    id: number
+    url: string
+  }>
+}
 
 export default function PetDetails() {
   const route = useRoute()
-  
+  const [pet, setPet] = useState<Pet>()
+
+  const params = route.params as PetDetailsRouteParams
+
+  useEffect(() =>{
+    api.get(`pets/${params.id}`).then(response => {
+      setPet(response.data)
+    })
+  }, [params.id])
+
+  if (!pet) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.description}>Carregando...</Text>
+      </View>
+    );
+  }
+
   return (
-      <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.imagesContainer}>
-          <ScrollView horizontal pagingEnabled>
-            <Image style={styles.image} source={{ uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg' }} />
-            <Image style={styles.image} source={{ uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg' }} />
-            <Image style={styles.image} source={{ uri: 'https://fmnova.com.br/images/noticias/safe_image.jpg' }} />
+          <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+            {pet.images.map(image => (
+              <Image
+                key={image.id}
+                style={styles.image}
+                source={{ uri: image.url }}
+              />
+            ))}
           </ScrollView>
         </View>
   
         <View style={styles.detailsContainer}>
-          <Text style={styles.title}>PetName</Text>
-          <Text style={styles.description}>PetAbout</Text>
+          <Text style={styles.title}>{pet.name}</Text>
+          <Text style={styles.description}>{pet.about}</Text>
         
           <View style={styles.mapContainer}>
             <MapView 
               provider={PROVIDER_GOOGLE}
               customMapStyle={mapStyle}
               initialRegion={{
-                latitude: -24.95, 
-                longitude: -53.4547,
+                latitude: pet.latitude, 
+                longitude: pet.longitude,
                 latitudeDelta: 0.09,
                 longitudeDelta: 0.09,
               }}
@@ -44,8 +86,8 @@ export default function PetDetails() {
               <Marker 
                 icon={mapMarker}
                 coordinate={{ 
-                  latitude: -27.2092052,
-                  longitude: -49.6401092
+                  latitude: pet.latitude, 
+                  longitude: pet.longitude,
                 }}
               />
             </MapView>
@@ -58,20 +100,35 @@ export default function PetDetails() {
           <View style={styles.separator} />
   
           <Text style={styles.title}>Contato</Text>
-          <Text style={styles.description}>userName</Text>
+          <Text style={styles.description}>{pet.userName}</Text>
   
           <View style={styles.scheduleContainer}>
-            <View style={[styles.scheduleItem, styles.scheduleItemBlue]}>
-              <Feather name="thumbs-up" size={40} color="#15B6D6" />
-              <Text style={[styles.scheduleText, styles.scheduleTextBlue]}>PetPuppy</Text>
-            </View>
-            <View style={[styles.scheduleItem, styles.scheduleItemGreen]}>
+            {pet.puppy ? (
+              <View style={[styles.scheduleItem, styles.scheduleItemBlue]}>
+                <Feather name="thumbs-up" size={40} color="#15B6D6" />
+                <Text style={[styles.scheduleText, styles.scheduleTextBlue]}>É filhote</Text>
+              </View>
+            ) : (
+              <View style={[styles.scheduleItem, styles.scheduleItemBlue]}>
+                <Feather name="thumbs-down" size={40} color="#15B6D6" />
+                <Text style={[styles.scheduleText, styles.scheduleTextBlue]}>Não é filhote</Text>
+              </View>
+            )}
+            
+            {pet.puppy ? (
+              <View style={[styles.scheduleItem, styles.scheduleItemGreen]}>
               <Feather name="minimize-2" size={40} color="#15B6D6" />
-              <Text style={[styles.scheduleText, styles.scheduleTextGreen]}>petBig</Text>
+              <Text style={[styles.scheduleText, styles.scheduleTextGreen]}>Achamos que irá ficar grande!</Text>
             </View>
+            ) : (
+              <View style={[styles.scheduleItem, styles.scheduleItemGreen]}>
+                <Feather name="minimize-2" size={40} color="#15B6D6" />
+                <Text style={[styles.scheduleText, styles.scheduleTextGreen]}>Achamos que não irá ficar grande!</Text>
+              </View>
+            )}
           </View>
   
-          <RectButton style={styles.contactButton} onPress={() => {}}>
+          <RectButton style={styles.contactButton} onPress={() => {`https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`}}>
             <FontAwesome name="whatsapp" size={24} color="#FFF" />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>
