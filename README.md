@@ -11,7 +11,7 @@ A ideia do projeto é fazer com que cada vez mais animais de rua consigam um lar
 Para rodar o Backend execute no diretório:
 
 ```
-yarn dev
+yarn start
 ```
 
 Abra http://localhost:3333 para vizualizar no browser.
