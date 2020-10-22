@@ -1,14 +1,5 @@
-import React, { useState } from "react";
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import React, { useState} from "react";
+import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -157,6 +148,8 @@ export default function PetData() {
         <Switch
           thumbColor="#fff"
           trackColor={{ false: "#ccc", true: "#39CC83" }}
+          value={big}
+          onValueChange={(text) => setBig(text)}
         />
       </View>
 

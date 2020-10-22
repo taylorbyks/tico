@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import mapMarker from '../images/Marker.png'
+import Logo from '../images/Logo.png'
 import mapStyle from '../utils/mapStyle.json'
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../services/api';
@@ -20,11 +21,13 @@ export default function List() {
   const [pets, setPets] = useState<Pet[]>([])
   const navigation = useNavigation()
 
-  useFocusEffect(() => {
-    api.get('pets').then(response => {
-      setPets(response.data)
-    })
-  })
+  useFocusEffect(
+    useCallback(() => {
+      api.get('pets').then(response => {
+        setPets(response.data)
+      })
+    }, [])
+  )
   
   function handleNavigationtoPetDetails(id: number){
     navigation.navigate('PetDetails', { id })
@@ -46,19 +49,20 @@ export default function List() {
           latitudeDelta: 0.09,
           longitudeDelta: 0.09,
       }}>
+  
         {pets.map(pet => {
           return (
             <Marker 
             key={pet.id}  
             icon={mapMarker}
-              calloutAnchor={{
-                x: 2.5,
-                y: 0.9,
-              }}
-              coordinate={{
-                latitude: pet.latitude, 
-                longitude: pet.longitude,
-              }}
+            calloutAnchor={{
+              x: 2.5,
+              y: 0.9,
+            }}
+            coordinate={{
+              latitude: pet.latitude, 
+              longitude: pet.longitude,
+            }}
             >
                 <Callout tooltip onPress={() => handleNavigationtoPetDetails(pet.id)}>
                   <View style={styles.calloutContainer}>
@@ -69,6 +73,7 @@ export default function List() {
           )
         })}
       </MapView>
+        <Image style={styles.logo} source={Logo} />
       
       <View style={styles.footer}>
       <Text style={styles.footerText}>{pets.length} Animais encontrados</Text>
@@ -85,6 +90,15 @@ export default function List() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  logo: {
+    width: 170,
+    height: 50,
+    position: "absolute",
+    left: 25,
+    right: 24,
+    top: 60,
   },
 
   map: {
@@ -120,7 +134,7 @@ const styles = StyleSheet.create({
   createPetButton: {
     width: 56,
     height: 56,
-    backgroundColor: '#633e3e',
+    backgroundColor: '#2c9fe7',
     borderRadius: 16,
 
     justifyContent: 'center',
