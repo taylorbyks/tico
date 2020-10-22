@@ -128,9 +128,11 @@ export default function Pet() {
             </footer>
           </div>
 
-            <button type="button" className="contact-button" onClick={() => `https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`}>
+            <button type="button" className="contact-button" onClick={ () => { window.open(`https://api.whatsapp.com/send?phone=${pet.userNumber}&text=`)}}>
+              
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
+              
             </button>
           </div>
         </div>
