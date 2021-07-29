@@ -4,7 +4,7 @@
 
 <h3 align="center">
 Project made in honor of Tico, an adopted dog who died in 2020.
-The project's idea is to make more and more stray animals get a home and an owner.
+The project's idea is to make more and more stray animals get a home and an a family.
 </h3>
 
 <p align="center">
