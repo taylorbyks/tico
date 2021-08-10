@@ -10,7 +10,7 @@ export default function Sidebar() {
   
   return (
       <aside className="app-sidebar">
-        <img src={LogoSmall} />
+        <img src={LogoSmall} alt="Tico"/>
 
         <footer>
           <button type="button" onClick={goBack}>

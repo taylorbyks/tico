@@ -28,7 +28,7 @@ function List() {
     <div id="page-map">
       <aside>
         <header>
-          <img src={Logo}></img>
+          <img src={Logo} alt="Tico"></img>
           <h2>Escolha um no mapa</h2>
           <p>Muitos animais estão a procura de um lar</p>
         </header>

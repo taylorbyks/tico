@@ -8,7 +8,7 @@ function Landing() {
   return (
     <div id="page-landing">
       <div className="content-wrapper">
-        <img src={Logo} className="logo"></img>
+        <img src={Logo} alt="Tico" className="logo"></img>
         <main>
           <h1>Adote um Pet</h1>
           <p>Entre para ver os animais perto de você que estão esperando por um lar!</p>
